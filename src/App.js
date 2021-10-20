@@ -9,12 +9,21 @@ import {
 } from 'react-router-dom'
 
 import {
-  createTheme,
-  ThemeProvider
+  ThemeProvider,
+  Box
 } from '@mui/material'
 
 import lightmode from './Themes/lightmode'
 import darkmode from './Themes/darkmode'
+
+
+import HomePage from './Pages/HomePage'
+import AboutPage from './Pages/AboutPage'
+import SkillsPage from './Pages/SkillsPage'
+import PortfolioPage from './Pages/PortfolioPage'
+import ContactPage from './Pages/ContactPage'
+
+import Navigation from './Components/Drawer/Navigation'
 
 function App() {
   const [isDarkmode, setIsDarkmode] = useState(true)
@@ -23,14 +32,32 @@ function App() {
   return (
     <ThemeProvider theme={isDarkmode ? darkmode : lightmode}>
       <Router>
+        <Box
+        sx={{
+          height: '100vh',
+          width: '100vw',
+          backgroundColor: (theme) => theme.palette.secondary.dark
+        }}
+        >
+          <Navigation />
         <Switch>
           <Route path="/">
-            <Homepage />
+            <HomePage />
+          </Route>
+          <Route path="/about">
+            <AboutPage />
+          </Route>
+          <Route path="/skills">
+            <SkillsPage />
+          </Route>
+          <Route path="/portfolio">
+            <PortfolioPage />
           </Route>
           <Route path="/contact">
-            <ContactMe />
+            <ContactPage />
           </Route>
         </Switch>
+        </Box>
       </Router>
     </ThemeProvider>
   );

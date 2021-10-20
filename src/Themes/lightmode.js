@@ -1,5 +1,7 @@
 import { createTheme } from '@mui/material'
 
-export default lightmode = createTheme({
+const lightmode = createTheme({
 
 })
+
+export default lightmode

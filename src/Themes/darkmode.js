@@ -1,11 +1,14 @@
 import { createTheme } from '@mui/material'
 
-export default darkmode = createTheme({
+const darkmode = createTheme({
+    typography: {
+        fontFamily: "'Josefin Sans', sans-serif"
+    },
     palette: {
         mode: "dark",
         primary: {
-            main: "#ABA4AD",
-            light: "#80838A",
+            main: "#80838A",
+            light: "#ABA4AD",
             dark: "#6F757D",
         },
         secondary: {
@@ -15,3 +18,5 @@ export default darkmode = createTheme({
         }
     }
 })
+
+export default darkmode;
