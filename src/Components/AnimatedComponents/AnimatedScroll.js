@@ -4,53 +4,73 @@ import {
     Typography
 } from "@mui/material"
 
-import { useSpring, animated  } from 'react-spring'
+import { useSpring, animated, useTrail } from 'react-spring'
 
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
-function AnimatedScroll() {
+function AnimatedScroll({sx}) {
 
     const spring = useSpring({
         from: {
-          letterSpacing: '2px' 
+            letterSpacing: '2px'
         },
         to: {
-          letterSpacing: '5px'
+            letterSpacing: '5px'
         },
         loop: { reverse: true },
         config: {
             duration: 800
         }
-      })
-  
-      const AnimatedTypography = animated(Typography)
+    })
+    const data = ["S", "C", "R", "O", "L", "L"]
+
+    const trail = useTrail(data.length, {
+        from: {
+            opacity: 0
+        },
+        to: {
+            opacity: 1
+        },
+        reset: true,
+        delay: 500,
+        config: { duration: 1500 },
+        loop: { reverse: true}
+    })
+
+    const AnimatedTypography = animated(Typography)
 
     return (
         <Box
+            sx={{
+                textOrientation: 'mixed',
+                writingMode: 'vertical-rl',
+                ...sx
+            }}
+        >
+            {
+                trail.map(({...style }, index) => (
+                    <AnimatedTypography
+                        key={index}
+                        style={style}
+                        sx={{
+                            display: 'inline-block',
+                            fontSize: '1.2rem',
+                            color: "#FFF",
+                            letterSpacing: '4px'
+                        }}
+                    >
+                        {data[index]}
+                    </AnimatedTypography>
+                ))
+            }
+            <KeyboardArrowDownIcon
                 sx={{
-                    textOrientation: 'mixed',
-                    writingMode: 'vertical-rl'
+                    fontSize: '1.6rem',
+                    marginLeft: '5px',
+                    color: '#FFF'
                 }}
-            >
-                <AnimatedTypography
-                    sx={{
-                        display: 'inline-block',
-                        fontSize: '1.2rem',
-                        color: "#FFF",
-                        letterSpacing: '4px'
-                    }}
-                    style={spring}
-                >
-                    SCROLL
-                </AnimatedTypography>
-                <KeyboardArrowDownIcon
-                    sx={{
-                        fontSize: '1.6rem',
-                        marginLeft: '5px',
-                        color: '#FFF'
-                    }}
-                />
-            </Box>
+            />
+        </Box>
     )
 }
 

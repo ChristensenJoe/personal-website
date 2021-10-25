@@ -1,8 +1,11 @@
+import { useState } from 'react'
+
 import {
     Box,
-    Typography,
     useTheme
 } from "@mui/material"
+
+import { useTrail, useSpring, animated } from 'react-spring'
 
 import CustomStyledButton from '../Buttons/CustomStyledButton'
 import AnimatedScroll from '../AnimatedComponents/AnimatedScroll'
@@ -11,6 +14,39 @@ import AnimatedText from '../AnimatedComponents/AnimatedText'
 
 function AboutSection() {
     const theme = useTheme();
+    const data = [{
+        text: 'Hi,',
+        sameLine: false,
+        color: '#FFF'
+    },
+    {
+        text: "I'm ",
+        sameLine: true,
+        color: '#FFF'
+    },
+    {
+        text: 'Joe',
+        sameLine: true,
+        color: theme.palette.primary.dark
+    },
+    {
+        text: 'Web Developer',
+        sameLine: false,
+        color: '#FFF'
+    }]
+
+    const trail = useTrail(data.length, {
+        from: { opacity: 0, x: 60, height: 0 },
+        to: { opacity: 1, x: 0, height: 110 }
+    })
+
+    const spring = useSpring({
+        from: { opacity: 0, y: 60 },
+        to: {opacity: 1, y: 0},
+        config: { duration: 1000 }
+    })
+
+    const AnimatedBox = animated(Box)
 
     return (
         <Box
@@ -26,64 +62,56 @@ function AboutSection() {
             >
                 <Box
                     sx={{
-                        marginBottom: '100px'
+                        marginBottom: '100px',
+                        height: '400px'
                     }}
                 >
-                    <AnimatedText
-                        text="Hi,"
-                        sx={{
-                            fontWeight: 600,
-                            color: '#FFF'
-                        }}
-                    >
-                    </AnimatedText>
-
-                    <AnimatedText
-                        text="I'm "
-                        sameLine
-                        sx={{
-                            fontWeight: 600,
-                            color: '#FFF'
-                        }}
-                    >
-                    </AnimatedText>
-                    <AnimatedText
-                        text="Joe"
-                        sameLine
-                        sx={{
-                            fontWeight: 600,
-                            color: theme.palette.primary.dark
-                        }}
-                    />
-
-                    <AnimatedText
-                        text="Web Developer"
-                        sx={{
-                            fontWeight: 600,
-                            color: '#FFF'
-                        }}
-                    />
+                    {
+                        trail.map(({ ...style }, index) => (
+                            <AnimatedText
+                                text={data[index].text}
+                                key={index}
+                                sameLine={data[index].sameLine}
+                                sx={{
+                                    fontWeight: 600,
+                                    color: data[index].color
+                                }}
+                                style={style}
+                            />
+                        ))
+                    }
                 </Box>
-                <CustomStyledButton
-                    text="Contact Me!"
-                />
+                <AnimatedBox
+                    sx={{
+                        width: '232px',
+                        display: 'flex',
+                        justifyContent: 'center',
+                    }}
+                    style={spring}
+                >
+                    <CustomStyledButton
+                        text="Contact Me!"
+                    />
+                </AnimatedBox>
             </Box>
             <Box
                 sx={{
-                    marginTop: '100px',
-                    marginRight: '10px',
-                    float: 'right',
+                    marginTop: '100px'
                 }}
             >
-                <AnimatedScroll />
-            </ Box>
-            <Box
-                sx={{
-                    marginTop: '100px',
-                    float: 'left',
-                }}
-            >
-                <AnimatedScroll />
+                <AnimatedScroll
+                    sx={{
+                        marginTop: '100px',
+                        marginRight: '10px',
+                        float: 'right',
+                    }}
+                />
+                <AnimatedScroll
+                    sx={{
+                        marginTop: '100px',
+                        float: 'left',
+                    }}
+                />
             </ Box>
         </Box>
     )

@@ -74,6 +74,7 @@ function CustomStyledButton({ text }) {
             </AnimatedBox>
             <AnimatedStyledButton
                 disableFocusRipple
+                disableTouchRipple
                 sx={{
                     position: 'absolute'
                 }}

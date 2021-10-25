@@ -26,9 +26,15 @@ const theme = createTheme({
             styleOverrides: {
                 root: {
                     borderRadius: 1,
-                    color: colors.secondary.light
+                    color: colors.secondary.light,
+                    '&:after': {
+                        backgroundColor: 'transparent'
+                    }
                 }
             }
+        },
+        MuiButtonBase: {
+            disableRipple: true
         }
     }
 })

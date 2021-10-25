@@ -1,16 +1,13 @@
 import {
     Drawer,
     List,
-    ListItem,
-    ListItemText,
-    Box,
-    Typography,
     useTheme,
     useMediaQuery
 } from '@mui/material'
 
 import DrawerHomeButton from '../Buttons/DrawerHomeButton'
 import DrawerDivider from '../Dividers/DrawerDivider'
+import DrawerItem from './DrawerItem'
 
 function Navigation() {
     const theme = useTheme();
@@ -39,33 +36,8 @@ function Navigation() {
             >
                 <DrawerDivider />
                 {
-                    ['About', 'Skills', 'Portfolio', 'Contact'].map(text => (
-                        <Box
-                        key={text}
-                        sx={{
-                            display: 'content'
-                        }}
-                        >
-                        <ListItem
-                            button
-                        >
-                            <ListItemText 
-                            sx={{
-                                textAlign: 'center',
-                            }}
-                            primary={
-                                <Typography
-                                    sx={{
-                                        fontSize: '1.8rem',
-                                        fontWeight: '300'
-                                    }}
-                                >
-                                    {text}
-                                </Typography>
-                            } />
-                        </ListItem>
-                        <DrawerDivider />
-                        </Box>
+                    ['About', 'Skills', 'Portfolio', 'Contact'].map((text, index) => (
+                        <DrawerItem key={index} text={text} />
                     ))
                 }
             </List>

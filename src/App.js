@@ -34,8 +34,8 @@ function App() {
       <Router>
         <Box
         sx={{
-          height: '100vh',
           width: '100vw',
+          overflow: 'auto',
           backgroundColor: (theme) => theme.palette.secondary.dark
         }}
         >

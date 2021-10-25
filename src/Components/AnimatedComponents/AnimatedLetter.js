@@ -27,7 +27,7 @@ function AnimatedLetter({ text, sx }) {
     return (
         <Box
             onMouseEnter={() => setIsHover(true)}
-            onMouseLeave={() => setIsHover(false)}
+            onMouseLeave={() => setTimeout(() => setIsHover(false), 1500)}
             sx={{
                 display: 'inline-block',
             }}

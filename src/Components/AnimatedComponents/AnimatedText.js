@@ -2,20 +2,22 @@
 import { useState } from 'react'
 
 import {
-    Box,
-    Typography
+    Box
 } from '@mui/material'
+
+import { animated } from 'react-spring'
 
 import AnimatedLetter from './AnimatedLetter'
 
-function AnimatedText({ sx, text, sameLine=false }) {
+function AnimatedText({ sx, text, sameLine=false, style }) {
 
-
+    const AnimatedBox = animated(Box)
     return (
-        <Box
+        <AnimatedBox
             sx={{
                 display: sameLine ? 'inline-block' : null 
             }}
+            style={style}
         >
             {
                 text.split(/(\w|\s+)/).map((letter) => (
@@ -25,7 +27,7 @@ function AnimatedText({ sx, text, sameLine=false }) {
                     />
                 ))
             }
-        </Box>
+        </AnimatedBox>
     )
 }
 
