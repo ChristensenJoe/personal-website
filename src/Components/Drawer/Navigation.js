@@ -5,22 +5,28 @@ import {
     ListItemText,
     Box,
     Typography,
+    useTheme,
+    useMediaQuery
 } from '@mui/material'
 
 import DrawerHomeButton from '../Buttons/DrawerHomeButton'
 import DrawerDivider from '../Dividers/DrawerDivider'
 
 function Navigation() {
-
+    const theme = useTheme();
+    const isMedium = useMediaQuery(theme.breakpoints.up('md'))
+    console.log(isMedium)
     return (
-        <Drawer
+        <>
+        {
+            isMedium && <Drawer
             sx={{
                 width: '140px',
                 flexShrink: 0,
                 '& .MuiDrawer-paper': {
                     width: '140px',
                     boxSizing: 'border-box',
-                },
+                }
             }}
             variant="permanent"
             anchor="left"
@@ -64,6 +70,8 @@ function Navigation() {
                 }
             </List>
         </Drawer>
+        }
+        </>
     )
 }
 
