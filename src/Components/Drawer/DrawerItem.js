@@ -38,7 +38,8 @@ function DrawerItem({ text }) {
                 sx={{
                     '&:hover': { 
                         backgroundColor: "transparent" 
-                    }
+                    },
+                    cursor: 'pointer'
                 }}
             >
                 <ListItemText

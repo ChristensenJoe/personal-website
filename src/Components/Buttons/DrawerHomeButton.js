@@ -29,7 +29,8 @@ function DrawerHomeButton() {
                 alignSelf: 'center',
                 height: 'auto',
                 textAlign: 'center',
-                marginBottom: '10px'
+                marginBottom: '10px',
+                cursor: 'pointer',
             }}
             onMouseEnter={() => setDisplayedImg(logoGif)}
             onMouseLeave={() => setDisplayedImg(logoGifReversed)}

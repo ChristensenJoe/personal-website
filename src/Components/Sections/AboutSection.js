@@ -52,7 +52,7 @@ function AboutSection() {
         <Box
             sx={{
                 textAlign: 'left',
-                paddingTop: '250px'
+                paddingTop: '250px',
             }}
         >
             <Box
@@ -74,7 +74,8 @@ function AboutSection() {
                                 sameLine={data[index].sameLine}
                                 sx={{
                                     fontWeight: 600,
-                                    color: data[index].color
+                                    color: data[index].color,
+                                    position: 'relative'
                                 }}
                                 style={style}
                             />
@@ -96,7 +97,7 @@ function AboutSection() {
             </Box>
             <Box
                 sx={{
-                    marginTop: '100px'
+                    marginTop: '20px'
                 }}
             >
                 <AnimatedScroll

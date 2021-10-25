@@ -47,6 +47,7 @@ function CustomStyledButton({ text }) {
                 justifyContent: 'center',
                 alignItems: 'center',
                 width: '250px',
+                cursor: 'pointer',
             }}
         >
             <AnimatedBox
