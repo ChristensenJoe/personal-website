@@ -18,7 +18,7 @@ export default function Canvas() {
   }))
   const [ref, { left, top }] = useMeasure()
 
-  const handleMouseMove = e => {
+  const handleMouseMove = (e: any) => {
     api.start({ xy: [e.clientX - left, e.clientY - top] })
   }
 
