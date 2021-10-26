@@ -15,7 +15,10 @@ const colors = {
 
 const theme = createTheme({
     typography: {
-        fontFamily: "'Josefin Sans', sans-serif"
+        fontFamily: "'Josefin Sans', sans-serif",
+        h2: {
+            fontSize: '5rem'
+        }
     },
     palette: {
         mode: "dark",
@@ -35,6 +38,15 @@ const theme = createTheme({
         },
         MuiButtonBase: {
             disableRipple: true
+        }
+    },
+    breakpoints: {
+        values: {
+            xs: 0,
+            sm: 700,
+            md: 900,
+            lg: 1200,
+            xl: 1536
         }
     }
 })

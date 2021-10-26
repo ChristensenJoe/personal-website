@@ -2,13 +2,17 @@ import { useState } from 'react'
 
 import {
     Box,
-    Typography
+    Typography,
+    useTheme,
+    useMediaQuery
 } from '@mui/material'
 
 import { useSpring, animated } from 'react-spring'
 
 
-function AnimatedLetter({ text, sx }) {
+function AnimatedLetter({ text, sx, variant }) {
+    const theme = useTheme();
+    const isXS = useMediaQuery(theme.breakpoints.only('xs'))
     const [isHover, setIsHover] = useState(false)
 
     if(text === " ") {
@@ -33,12 +37,14 @@ function AnimatedLetter({ text, sx }) {
             }}
         >
             <AnimatedTypography
-                variant="h1"
+                variant={variant}
                 align="center"
                 sx={{
                     ...sx,
                     display: 'inline-block',
+                    
                     color: (theme) => isHover ? theme.palette.secondary.main : sx.color || '#FFF',
+                    fontSize: isXS ? '2.8rem' : null
                 }}
                 style={{
                     scale: x.to({

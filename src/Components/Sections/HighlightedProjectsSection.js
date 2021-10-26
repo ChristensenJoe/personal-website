@@ -8,22 +8,22 @@ import { useTrail, useSpring, animated } from 'react-spring'
 
 import AnimatedText from '../AnimatedComponents/AnimatedText'
 
-function AboutSection() {
+function HighlightedProjectsSection() {
     const theme = useTheme();
     const isXS = useMediaQuery(theme.breakpoints.only("xs"))
     console.log(isXS)
     const data = [{
-        text: 'All',
+        text: 'Some',
         sameLine: true,
         color: theme.palette.secondary.main
     },
     {
-        text: " About",
+        text: " Personal",
         sameLine: true,
         color: theme.palette.secondary.main
     },
     {
-        text: ' Me',
+        text: ' Projects',
         sameLine: true,
         color: theme.palette.secondary.main
     }]
@@ -69,4 +69,4 @@ function AboutSection() {
     )
 }
 
-export default AboutSection;
+export default HighlightedProjectsSection;

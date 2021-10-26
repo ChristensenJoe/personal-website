@@ -8,17 +8,12 @@ import { useTrail, useSpring, animated } from 'react-spring'
 
 import AnimatedText from '../AnimatedComponents/AnimatedText'
 
-function AboutSection() {
+function ContactSection() {
     const theme = useTheme();
     const isXS = useMediaQuery(theme.breakpoints.only("xs"))
     console.log(isXS)
     const data = [{
-        text: 'All',
-        sameLine: true,
-        color: theme.palette.secondary.main
-    },
-    {
-        text: " About",
+        text: 'Contact',
         sameLine: true,
         color: theme.palette.secondary.main
     },
@@ -69,4 +64,4 @@ function AboutSection() {
     )
 }
 
-export default AboutSection;
+export default ContactSection;

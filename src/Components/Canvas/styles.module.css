@@ -48,7 +48,7 @@
   
   .hooksMain {
     position: absolute;
-    width: 100%;
+    width: 88%;
     height: 100%;
     filter: url('#goo');
     overflow: hidden;
