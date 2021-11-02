@@ -1,4 +1,4 @@
-import {useEffect, useRef, useState} from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import {
     Box,
@@ -7,7 +7,7 @@ import {
     useMediaQuery
 } from '@mui/material'
 
-import { useTrail } from 'react-spring'
+import { useTrail, animated, useChain, useSpringRef, useSpring, config } from 'react-spring'
 
 import AnimatedScroll from '../AnimatedComponents/AnimatedScroll'
 import AnimatedText from '../AnimatedComponents/AnimatedText'
@@ -33,22 +33,72 @@ function AboutSection() {
 
     const [isTransition, setIsTransition] = useState(false)
 
-    const trail = useTrail(data.length, {
-        from: isTransition ? { opacity: 0, x: 60, height: 0 } : {opacity: 0},
+    const headerTrailRef = useSpringRef();
+    const headerTrail = useTrail(data.length, {
+        ref: headerTrailRef,
+        config: config.molasses,
+        from: isTransition ? { opacity: 0, x: 60, height: 0 } : { opacity: 0 },
         to: isTransition ? { opacity: 1, x: 0, height: 10 } : null
     })
-    
+
+    const firstTextSpringRef = useSpringRef();
+    const firstTextSpring = useSpring({
+        ref: firstTextSpringRef,
+        config: config.gentle,
+        from: isTransition ? { opacity: 0, x: 60 } : { opacity: 0 },
+        to: isTransition ? { opacity: 1, x: 0 } : null
+    })
+
+    const secondTextSpringRef = useSpringRef();
+    const secondTextSpring = useSpring({
+        ref: secondTextSpringRef,
+        config: config.gentle,
+        from: isTransition ? { opacity: 0, x: -60 } : { opacity: 0 },
+        to: isTransition ? { opacity: 1, x: 0 } : null
+    })
+
+    const thirdTextSpringRef = useSpringRef();
+    const thirdTextSpring = useSpring({
+        ref: thirdTextSpringRef,
+        config: config.gentle,
+        from: isTransition ? { opacity: 0, x: 60 } : { opacity: 0 },
+        to: isTransition ? { opacity: 1, x: 0 } : null
+    })
+
+    useChain([headerTrailRef, firstTextSpringRef, secondTextSpringRef, thirdTextSpringRef], [0, 0.5, 0.7, 0.9])
+
+    const texts = [
+        {
+            text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi eu consectetur consectetur, nisl nunc consectetur nisl, eget consectetur nisl nunc eget nisl. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi eu consectetur consectetur,nisl nunc consectetur nisl, eget consectetur nisl nunc eget nisl. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            sx: {
+
+            },
+            spring: firstTextSpring
+        },
+        {
+            text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi eu consectetur consectetur, nisl nunc consectetur nisl, eget consectetur nisl nunc eget nisl.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi eu cons",
+            sx: {
+                marginTop: '50px'
+            },
+            spring: secondTextSpring
+        },
+        {
+            text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi eu consectetur consectetur, nisl nunc consectetur nisl, eget cons",
+            sx: {
+                marginTop: '50px'
+            },
+            spring: thirdTextSpring
+        }
+    ]
+
     useEffect(() => {
 
         const onScroll = (e) => {
             let scrollHeight = e.path[1].scrollY
-            let propHeight = aboutRef.current.offsetHeight/2
+            let propHeight = aboutRef.current.offsetHeight / 2
 
             if (scrollHeight > propHeight) {
                 setIsTransition(true)
-            }
-            else {
-                
             }
         }
 
@@ -60,6 +110,8 @@ function AboutSection() {
     }, [])
 
     const aboutRef = useRef();
+
+    const AnimatedBox = animated(Box)
 
     return (
         <Box
@@ -77,7 +129,7 @@ function AboutSection() {
                 }}
             >
                 {
-                    trail.map((styles, index) => (
+                    headerTrail.map((styles, index) => (
                         <AnimatedText
                             text={data[index].text}
                             key={index}
@@ -102,39 +154,20 @@ function AboutSection() {
                         color: (theme) => theme.palette.primary.light,
                     }}
                 >
-                    <Typography
-                        variant="h5"
-                    >
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Pellentesque euismod, nisi eu consectetur consectetur,
-                        nisl nunc consectetur nisl, eget consectetur nisl nunc
-                        eget nisl. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Pellentesque euismod, nisi eu consectetur consectetur,
-                        nisl nunc consectetur nisl, eget consectetur nisl nunc
-                        eget nisl. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </Typography>
-                    <Typography
-                        sx={{
-                            marginTop: '50px'
-                        }}
-                        variant="h5"
-                    >
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Pellentesque euismod, nisi eu consectetur consectetur,
-                        nisl nunc consectetur nisl, eget consectetur nisl nunc
-                        eget nisl.Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Pellentesque euismod, nisi eu cons
-                    </Typography>
-                    <Typography
-                        sx={{
-                            marginTop: '50px'
-                        }}
-                        variant="h5"
-                    >
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Pellentesque euismod, nisi eu consectetur consectetur,
-                        nisl nunc consectetur nisl, eget cons
-                    </Typography>
+                    {
+                        texts.map((item) => (
+                            <AnimatedBox
+                                style={item.spring}
+                            >
+                                <Typography
+                                    variant="h5"
+                                    sx={item.sx}
+                                >
+                                    {item.text}
+                                </Typography>
+                            </AnimatedBox>
+                        ))
+                    }
                 </Box>
             </Box>
             <Box
@@ -156,7 +189,7 @@ function AboutSection() {
                     }}
                 />
             </ Box>
-        </Box>
+        </Box >
     )
 }
 
