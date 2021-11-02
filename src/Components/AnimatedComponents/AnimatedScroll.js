@@ -4,24 +4,12 @@ import {
     Typography
 } from "@mui/material"
 
-import { useSpring, animated, useTrail } from 'react-spring'
+import { animated, useTrail } from 'react-spring'
 
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 function AnimatedScroll({sx}) {
 
-    const spring = useSpring({
-        from: {
-            letterSpacing: '2px'
-        },
-        to: {
-            letterSpacing: '5px'
-        },
-        loop: { reverse: true },
-        config: {
-            duration: 800
-        }
-    })
     const data = ["S", "C", "R", "O", "L", "L"]
 
     const trail = useTrail(data.length, {

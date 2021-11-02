@@ -1,4 +1,3 @@
-import { useState } from 'react'
 
 import {
     Box,
@@ -16,7 +15,6 @@ import AnimatedText from '../AnimatedComponents/AnimatedText'
 function IntroSection() {
     const theme = useTheme();
     const isXS = useMediaQuery(theme.breakpoints.only("xs"))
-    console.log(isXS)
     const data = [{
         text: 'Hi,',
         sameLine: false,

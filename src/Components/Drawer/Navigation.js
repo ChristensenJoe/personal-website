@@ -12,7 +12,6 @@ import DrawerItem from './DrawerItem'
 function Navigation() {
     const theme = useTheme();
     const isMedium = useMediaQuery(theme.breakpoints.up('md'))
-    console.log(isMedium)
     return (
         <>
         {

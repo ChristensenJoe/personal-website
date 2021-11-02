@@ -1,6 +1,6 @@
-import {
-  useState
-} from 'react'
+// import {
+//   useState
+// } from 'react'
 
 import {
   BrowserRouter as Router,
@@ -26,8 +26,8 @@ import ContactPage from './Pages/ContactPage'
 import Navigation from './Components/Drawer/Navigation'
 
 function App() {
-  const [isDarkmode, setIsDarkmode] = useState(true)
-
+  // const [isDarkmode, setIsDarkmode] = useState(true)
+  const isDarkmode = true;
 
   return (
     <ThemeProvider theme={isDarkmode ? darkmode : lightmode}>
@@ -35,8 +35,7 @@ function App() {
         <Box
         sx={{
           width: '100vw',
-          overflow: 'auto',
-          backgroundColor: (theme) => theme.palette.secondary.dark
+          backgroundColor: (theme) => theme.palette.secondary.dark,
         }}
         >
           <Navigation />

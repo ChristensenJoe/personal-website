@@ -4,14 +4,13 @@ import {
     useMediaQuery
 } from '@mui/material'
 
-import { useTrail, useSpring, animated } from 'react-spring'
+import { useTrail } from 'react-spring'
 
 import AnimatedText from '../AnimatedComponents/AnimatedText'
 
 function HighlightedProjectsSection() {
     const theme = useTheme();
     const isXS = useMediaQuery(theme.breakpoints.only("xs"))
-    console.log(isXS)
     const data = [{
         text: 'Some',
         sameLine: true,

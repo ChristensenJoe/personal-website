@@ -4,11 +4,10 @@ import {
     Button,
     Typography,
     Box,
-    alpha,
     useTheme
 } from '@mui/material'
 
-import { useSpring, animated, config } from 'react-spring'
+import { useSpring, animated } from 'react-spring'
 
 
 function CustomStyledButton({ text }) {
@@ -19,11 +18,7 @@ function CustomStyledButton({ text }) {
         config: { duration: 250 }
     })
 
-    const StyledButton = styled(Button)(({ theme }) => (
-        `
-    
-        `,
-        {
+    const StyledButton = styled(Button)(({ theme }) => ({
             height: '50px',
             width: '250px',
             marginLeft: 'auto',

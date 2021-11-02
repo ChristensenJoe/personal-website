@@ -1,3 +1,4 @@
+
 import {
     Box
 } from '@mui/material'
@@ -10,6 +11,7 @@ import Canvas from '../Components/Canvas/Canvas.tsx'
 
 
 function HomePage() {
+
 
     return (
         <Box
@@ -25,7 +27,8 @@ function HomePage() {
                 <Canvas/>
             </Box>
             <IntroSection />
-            <AboutSection />
+            <AboutSection 
+            />
             <HighlightedProjectsSection />
             <ContactSection />
         </Box>

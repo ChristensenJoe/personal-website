@@ -1,5 +1,4 @@
 
-import { useState } from 'react'
 
 import {
     Box
@@ -22,11 +21,12 @@ function AnimatedText({ sx, text, sameLine=false, style, variant="h1" }) {
             }}
         >
             {
-                text.split(/(\w|\s+)/).map((letter) => (
+                text.split(/(\w|\s+)/).map((letter, index) => (
                     <AnimatedLetter
                         sx={sx}
                         text={letter}
                         variant={variant}
+                        key={index}
                     />
                 ))
             }
