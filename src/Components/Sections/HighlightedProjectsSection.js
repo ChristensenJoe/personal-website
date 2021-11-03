@@ -8,6 +8,7 @@ import {
 
 import { useTrail, config } from 'react-spring'
 
+import AnimatedScroll from '../AnimatedComponents/AnimatedScroll'
 import AnimatedText from '../AnimatedComponents/AnimatedText'
 
 function HighlightedProjectsSection() {
@@ -62,7 +63,7 @@ function HighlightedProjectsSection() {
     return (
         <Box
             sx={{
-                marginTop: '300px'
+                marginTop: '300px',
             }}
             ref={highlightedRef}
         >
@@ -92,6 +93,25 @@ function HighlightedProjectsSection() {
                     ))
                 }
             </Box>
+            <Box
+                sx={{
+                    marginTop: '20px'
+                }}
+            >
+                <AnimatedScroll
+                    sx={{
+                        marginTop: '30px',
+                        marginRight: '10px',
+                        float: 'right',
+                    }}
+                />
+                <AnimatedScroll
+                    sx={{
+                        marginTop: '30px',
+                        float: 'left',
+                    }}
+                />
+            </ Box>
         </Box>
     )
 }
