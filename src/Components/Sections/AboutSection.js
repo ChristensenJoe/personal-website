@@ -94,10 +94,10 @@ function AboutSection() {
     useEffect(() => {
 
         const onScroll = (e) => {
-            let scrollHeight = e.path[1].scrollY
-            let propHeight = aboutRef.current.offsetHeight / 2
-
-            if (scrollHeight > propHeight) {
+            let scrollHeight = 400;
+            let propHeight = aboutRef.current.getBoundingClientRect().y
+            console.log(propHeight)
+            if (propHeight < scrollHeight) {
                 setIsTransition(true)
             }
         }
@@ -155,9 +155,10 @@ function AboutSection() {
                     }}
                 >
                     {
-                        texts.map((item) => (
+                        texts.map((item, index) => (
                             <AnimatedBox
                                 style={item.spring}
+                                key={index}
                             >
                                 <Typography
                                     variant="h5"

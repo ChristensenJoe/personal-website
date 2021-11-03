@@ -1,10 +1,12 @@
+import { useState, useEffect, useRef } from 'react'
+
 import {
     Box,
     useTheme,
     useMediaQuery
 } from '@mui/material'
 
-import { useTrail } from 'react-spring'
+import { useTrail, config } from 'react-spring'
 
 import AnimatedText from '../AnimatedComponents/AnimatedText'
 
@@ -27,16 +29,42 @@ function HighlightedProjectsSection() {
         color: theme.palette.secondary.main
     }]
 
-    const trail = useTrail(data.length, {
-        from: { opacity: 0, x: 60, height: 0 },
-        to: { opacity: 1, x: 0, height: 10 }
+    const [isTransition, setIsTransition] = useState(false)
+
+
+    const headerTrail = useTrail(data.length, {
+        config: config.molasses,
+        from: isTransition ? { opacity: 0, x: 60, height: 0 } : { opacity: 0 },
+        to: isTransition ? { opacity: 1, x: 0, height: 10 } : null
     })
+
+    useEffect(() => {
+
+        const onScroll = (e) => {
+            let scrollHeight = 400
+            let propHeight = highlightedRef.current.getBoundingClientRect().y
+            console.log("Highlight: ", propHeight)
+            if (propHeight < scrollHeight) {
+                setIsTransition(true)
+            }
+        }
+
+        window.addEventListener('scroll', onScroll)
+
+        return () => {
+            window.removeEventListener('scroll', onScroll)
+        }
+    }, [])
+
+    const highlightedRef = useRef();
+
 
     return (
         <Box
             sx={{
                 marginTop: '300px'
             }}
+            ref={highlightedRef}
         >
             <Box
                 sx={{
@@ -48,7 +76,7 @@ function HighlightedProjectsSection() {
                 }}
             >
                 {
-                    trail.map(({ ...style }, index) => (
+                    headerTrail.map(({ ...style }, index) => (
                         <AnimatedText
                             text={data[index].text}
                             key={index}
